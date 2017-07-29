@@ -6,6 +6,7 @@
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
     "project_module_name": "{{ cookiecutter.project_slug.lower().replace('-', '_') }}",
     "project_short_description": "A short description of the project",
+    "project_platformio_board": "pro8MHzatmega328",
     "release_date": "{% now 'local' %}",
     "version": "0.1.0",
     "_extensions": ["jinja2_time.TimeExtension"]
