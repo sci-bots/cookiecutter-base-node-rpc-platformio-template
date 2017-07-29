@@ -1,0 +1,56 @@
+# source will be downloaded prior to filling in jinja templates
+# Example assumes that this folder has setup.py in it
+source:
+  git_url: ../
+
+package:
+  name: {{cookiecutter.project_slug}}
+{{ "{%" }} if GIT_DESCRIBE_NUMBER > '0' {{ "%}" }}
+  version: {{ "{{" }} GIT_DESCRIBE_TAG[1:] {{ "}}" }}.{{ "{{" }} GIT_DESCRIBE_NUMBER {{ "}}" }}
+{{ "{%" }} else {{ "%}" }}
+  version: {{ "{{" }} GIT_DESCRIBE_TAG[1:] {{ "}}" }}.0
+{{ "{%" }} endif {{ "%}" }}
+
+requirements:
+  build:
+    - future
+    - nanopb-helpers >=0.6
+    - paver
+    - pip
+    - platformio-framework-arduinoavr >=1.136.0
+    - platformio-helpers >=0.2
+    - platformio-tool-scons
+    - platformio-toolchain-atmelavr
+    - pytables
+    - python 2.7*
+    - serial-device >=0.7
+    #- arduino-linked-list >=1.2.3
+    #- arduino-memory
+    #- arduino-slow-soft-wire
+
+  run:
+    - base-node >=0.8
+    - future
+    - nanopb-helpers >=0.6
+    - paver
+    - pip
+    - platformio-framework-arduinoavr >=1.136.0
+    - platformio-helpers >=0.2
+    - platformio-tool-scons
+    - platformio-toolchain-atmelavr
+    - pytables
+    - python 2.7*
+    - serial-device >=0.7
+    #- arduino-linked-list >=1.2.3
+    #- arduino-memory
+    #- arduino-slow-soft-wire
+
+test:
+  imports:
+    - {{cookiecutter.project_module_name}}
+  commands:
+    - python -m {{cookiecutter.project_module_name}}.bin.upload -h
+
+about:
+  home: https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
+  license: MIT
