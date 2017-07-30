@@ -1,3 +1,2 @@
 include versioneer.py
 include _version.py
-include src/cfobel/_version.py

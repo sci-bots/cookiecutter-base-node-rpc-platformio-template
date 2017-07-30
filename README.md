@@ -9,7 +9,7 @@ Install `cookiecutter` command line: `pip install cookiecutter`
 
 Usage
 -----
-Generate a new Cookiecutter template layout: `cookiecutter gh:cfobel/cookiecutter-base-node-rpc-platformio-template`    
+Generate a new Cookiecutter template layout: `cookiecutter gh:sci-bots/cookiecutter-base-node-rpc-platformio-template`    
 
 License
 -------
