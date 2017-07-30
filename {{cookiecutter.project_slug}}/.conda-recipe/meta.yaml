@@ -23,7 +23,7 @@ requirements:
     - platformio-toolchain-atmelavr
     - pytables
     - python 2.7*
-    - serial-device >=0.7
+    - base-node-rpc >=0.24
     - arduino-aligned-alloc
     - arduino-linked-list >=1.2.3
     - arduino-memory
@@ -40,7 +40,7 @@ requirements:
     - platformio-toolchain-atmelavr
     - pytables
     - python 2.7*
-    - serial-device >=0.7
+    - base-node-rpc >=0.24
     - arduino-aligned-alloc
     - arduino-linked-list >=1.2.3
     - arduino-memory

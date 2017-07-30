@@ -23,6 +23,7 @@ rpc_module = import_module('{{cookiecutter.project_module_name}}')
 VERSION = version.getVersion()
 PROPERTIES = OrderedDict([('name', '{{cookiecutter.project_slug}}'),
                           ('package_name', '{{cookiecutter.project_slug}}'),
+                          ('module_name', '{{cookiecutter.project_module_name}}'),
                           ('manufacturer', '{{cookiecutter.hardware_manufacturer}}'),
                           ('software_version', VERSION),
                           ('url', 'https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}')])
@@ -31,6 +32,7 @@ PROPERTIES = OrderedDict([('name', '{{cookiecutter.project_slug}}'),
 LIB_PROPERTIES = PROPERTIES.copy()
 LIB_PROPERTIES.update(OrderedDict([('author', '{{cookiecutter.full_name}}'),
                                    ('author_email', '{{cookiecutter.email}}'),
+                                   ('camelcase_name', '{{cookiecutter.project_camelcase}}'),
                                    ('short_description', '{{cookiecutter.project_short_description}}'),
                                    ('version', VERSION),
                                    ('long_description', ''),
