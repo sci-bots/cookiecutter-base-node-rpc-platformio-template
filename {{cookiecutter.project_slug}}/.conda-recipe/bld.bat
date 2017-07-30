@@ -1,8 +1,7 @@
 @echo off
 setlocal enableextensions
 md "%PREFIX%"\Library\include\Arduino
-md "%PREFIX%"\Library\bin\platformio\hv-switching-board\v2_1
-md "%PREFIX%"\Library\bin\platformio\hv-switching-board\v3_1
+md "%PREFIX%"\Library\bin\platformio\{{cookiecutter.project_slug}}\default
 endlocal
 
 REM Build firmware
@@ -11,9 +10,8 @@ if errorlevel 1 exit 1
 REM Copy Arduino library to Conda include directory
 xcopy /S /Y /I /Q "%SRC_DIR%"\lib\HVSwitchingBoard "%PREFIX%"\Library\include\Arduino\HVSwitchingBoard
 REM Copy compiled firmware to Conda bin directory
-copy "%SRC_DIR%"\platformio.ini "%PREFIX%"\Library\bin\platformio\hv-switching-board
-copy "%SRC_DIR%"\.pioenvs\v2_1\firmware.hex "%PREFIX%"\Library\bin\platformio\hv-switching-board\v2_1\firmware.hex
-copy "%SRC_DIR%"\.pioenvs\v3_1\firmware.hex "%PREFIX%"\Library\bin\platformio\hv-switching-board\v3_1\firmware.hex
+copy "%SRC_DIR%"\platformio.ini "%PREFIX%"\Library\bin\platformio\{{cookiecutter.project_slug}}
+copy "%SRC_DIR%"\.pioenvs\default\firmware.hex "%PREFIX%"\Library\bin\platformio\{{cookiecutter.project_slug}}\default\firmware.hex
 if errorlevel 1 exit 1
 
 REM Generate `setup.py` from `pavement.py` definition.

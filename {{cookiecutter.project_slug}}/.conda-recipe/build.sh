@@ -1,6 +1,5 @@
 mkdir -p "${PREFIX}"/include/Arduino
-mkdir -p "${PREFIX}"/bin/platformio/hv-switching-board/v2_1
-mkdir -p "${PREFIX}"/bin/platformio/hv-switching-board/v3_1
+mkdir -p "${PREFIX}"/bin/platformio/{{cookiecutter.project_slug}}/default
 
 # Build firmware
 "${PYTHON}" -m paver build_firmware
@@ -9,9 +8,8 @@ rc=$?; if [[ $rc != 0  ]]; then exit $rc; fi
 # Copy Arduino library to Conda include directory
 cp -ra "${SRC_DIR}"/lib/HVSwitchingBoard "${PREFIX}"/include/Arduino/HVSwitchingBoard
 # Copy compiled firmware to Conda bin directory
-cp -a "${SRC_DIR}"/platformio.ini "${PREFIX}"/bin/hv-switching-board
-cp -a "${SRC_DIR}"/.pioenvs/v2_1/firmware.hex "${PREFIX}"/bin/hv-switching-board/v2_1/firmware.hex
-cp -a "${SRC_DIR}"/.pioenvs/v3_1/firmware.hex "${PREFIX}"/bin/hv-switching-board/v3_1/firmware.hex
+cp -a "${SRC_DIR}"/platformio.ini "${PREFIX}"/bin/{{cookiecutter.project_slug}}
+cp -a "${SRC_DIR}"/.pioenvs/default/firmware.hex "${PREFIX}"/bin/{{cookiecutter.project_slug}}/default/firmware.hex
 rc=$?; if [[ $rc != 0  ]]; then exit $rc; fi
 
 # Generate `setup.py` from `pavement.py` definition.
