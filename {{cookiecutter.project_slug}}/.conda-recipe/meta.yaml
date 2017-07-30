@@ -24,9 +24,9 @@ requirements:
     - pytables
     - python 2.7*
     - serial-device >=0.7
-    #- arduino-linked-list >=1.2.3
-    #- arduino-memory
-    #- arduino-slow-soft-wire
+    - arduino-aligned-alloc
+    - arduino-linked-list >=1.2.3
+    - arduino-memory
 
   run:
     - base-node >=0.8
@@ -41,9 +41,9 @@ requirements:
     - pytables
     - python 2.7*
     - serial-device >=0.7
-    #- arduino-linked-list >=1.2.3
-    #- arduino-memory
-    #- arduino-slow-soft-wire
+    - arduino-aligned-alloc
+    - arduino-linked-list >=1.2.3
+    - arduino-memory
 
 test:
   imports:

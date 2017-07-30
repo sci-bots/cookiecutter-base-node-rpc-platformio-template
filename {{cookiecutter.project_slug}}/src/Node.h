@@ -9,7 +9,6 @@
 #include <CArrayDefs.h>
 #include "RPCBuffer.h"  // Define packet sizes
 #include "{{cookiecutter.project_camelcase}}/Properties.h"  // Define package name, URL, etc.
-#include "{{cookiecutter.project_camelcase}}/aligned_alloc.h"
 #include <BaseNodeRpc/BaseNode.h>
 #include <BaseNodeRpc/BaseNodeEeprom.h>
 #include <BaseNodeRpc/BaseNodeI2c.h>
@@ -22,6 +21,7 @@
 #include <pb_validate.h>
 #include <pb_eeprom.h>
 #include <LinkedList.h>
+#include <AlignedAlloc.h>
 #include "{{cookiecutter.project_module_name}}_config_validate.h"
 #include "{{cookiecutter.project_module_name}}_state_validate.h"
 #include "{{cookiecutter.project_camelcase}}/config_pb.h"
