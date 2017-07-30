@@ -4,6 +4,10 @@ import os
 import sys
 
 from paver.easy import task, needs, path, sh, options
+try:
+    from base_node_rpc.pavement_base import *
+except ImportError:
+    pass
 
 # add the current directory as the first listing on the python path
 # so that we import the correct version.py
@@ -18,19 +22,31 @@ sys.path.append(path('.').abspath())
 rpc_module = import_module('{{cookiecutter.project_module_name}}')
 VERSION = version.getVersion()
 PROPERTIES = OrderedDict([('name', '{{cookiecutter.project_slug}}'),
+                          ('package_name', '{{cookiecutter.project_slug}}'),
                           ('manufacturer', '{{cookiecutter.hardware_manufacturer}}'),
                           ('software_version', VERSION),
                           ('url', 'https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}')])
 
+# XXX Properties used to generate Arduino library properties file.
+LIB_PROPERTIES = PROPERTIES.copy()
+LIB_PROPERTIES.update(OrderedDict([('author', '{{cookiecutter.full_name}}'),
+                                   ('author_email', '{{cookiecutter.email}}'),
+                                   ('short_description', '{{cookiecutter.project_short_description}}'),
+                                   ('version', VERSION),
+                                   ('long_description', ''),
+                                   ('category', '{{cookiecutter.arduino_category}}'),
+                                   ('architectures', '{{cookiecutter.arduino_architectures}}')]))
+
 options(
     rpc_module=rpc_module,
     PROPERTIES=PROPERTIES,
+    LIB_PROPERTIES=LIB_PROPERTIES,
     base_classes=['BaseNodeSerialHandler',
                   'BaseNodeEeprom',
                   'BaseNodeI2c',
-                  'BaseNodeI2cHandler',
+                  'BaseNodeI2cHandler<Handler>',
                   'BaseNodeConfig<ConfigMessage, Address>',
-                  'BaseNodeConfig<StateMessage>'],
+                  'BaseNodeState<StateMessage>'],
     rpc_classes=['{{cookiecutter.project_module_name}}::Node'],
     setup=dict(name=PROPERTIES['name'],
                version=VERSION,
@@ -39,12 +55,13 @@ options(
                author_email='{{cookiecutter.email}}',
                url=PROPERTIES['url'],
                license='BSD',
-               install_requires=['wheeler.base_node_rpc>=0.10.post1'],
+               install_requires=['wheeler.base_node_rpc>=0.23'],
                include_package_data=True,
                packages=['{{cookiecutter.project_module_name}}']))
 
 
 @task
+@needs('base_node_rpc.pavement_base.generate_all_code')
 def build_firmware():
     sh('pio run')
 

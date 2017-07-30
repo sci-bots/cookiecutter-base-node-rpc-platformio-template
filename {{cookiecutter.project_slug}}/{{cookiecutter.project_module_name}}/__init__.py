@@ -3,7 +3,7 @@ import warnings
 
 from path_helpers import path
 try:
-    from .proxy import Proxy, I2cProxy, SerialProxy, serial_ports
+    from .proxy import Proxy, I2cProxy, SerialProxy
 except (ImportError, TypeError), exception:
     warnings.warn(str(exception))
 try:
